@@ -47,9 +47,8 @@ export default function Hero() {
     <section className="relative h-screen flex items-center justify-center text-white">
       <div className="absolute inset-0">
         <Image
-          // background 4 or 8
           src="/images/backgrounds/background-8.jpg"
-          alt=""
+          alt="bhaktapur-dental-clinic"
           fill
           priority
           sizes="100vw"
