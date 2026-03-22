@@ -1,8 +1,9 @@
 "use client";
 
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, PhoneCall, XIcon } from "lucide-react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -18,6 +19,8 @@ import { useMediaQuery } from "react-responsive";
 import { ScrollSmoother } from "gsap/all";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function Navbar() {
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -54,8 +57,12 @@ export default function Navbar() {
 
   if (isMobile) {
     return (
-      <div className="fixed top-4 right-4 z-50 rounded-full" ref={navRef}>
+      <div
+        className="fixed top-4 right-4 z-50 rounded-full md:rounded-none"
+        ref={navRef}
+      >
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+          {/* ── Trigger button ─────────────────────────────────────── */}
           <SheetTrigger>
             <div
               id="mobile-nav"
@@ -65,35 +72,56 @@ export default function Navbar() {
             </div>
           </SheetTrigger>
 
+          {/* ── Drawer ─────────────────────────────────────────────── */}
           <SheetContent
             side="right"
-            className="
-    w-full sm:w-100
-    bg-white/30 dark:bg-neutral-900/70
-    backdrop-blur-2xl
-    border-l border-white/20 dark:border-white/10
-    text-neutral-900 dark:text-white
-    flex flex-col
-  "
+            className={cn(
+              "w-full sm:w-96 flex flex-col p-0 gap-0 border-0",
+              "bg-black/40",
+              "backdrop-blur-2xl",
+            )}
+            showCloseButton={false}
           >
             {/* Header */}
-            <SheetHeader>
-              <SheetTitle className="text-2xl font-extrabold tracking-tight text-primary">
-                Care 32 Dental
-              </SheetTitle>
-              <p className="text-sm text-neutral-300 dark:text-neutral-300">
-                Committed to your oral health
-              </p>
+            <SheetHeader className="px-6 pt-8 pb-5 relative">
+              {/* Logo / brand row */}
+              <div className="flex items-center gap-3">
+                <div className="h-9 w-9 rounded-full bg-white flex items-center justify-center shadow-md shrink-0">
+                  <span className="text-white font-extrabold text-sm tracking-tight">
+                    <Image
+                      src="/images/favicon.ico"
+                      alt=""
+                      // fill
+                      width={32}
+                      height={32}
+                      // className="w-7! h-7!"
+                    />
+                  </span>
+                </div>
+                <div>
+                  <SheetTitle className="text-xl font-extrabold tracking-tight text-white leading-none">
+                    Care 32 Dental
+                  </SheetTitle>
+                  <p className="text-xs font-medium uppercase tracking-widest text-teal-500 mt-0.5">
+                    Committed to your oral health
+                  </p>
+                </div>
+              </div>
+              <SheetClose className="absolute right-4">
+                <XIcon className="text-white" size={20} />
+              </SheetClose>
             </SheetHeader>
 
-            <div className="mx-4">
-              <Separator className="bg-black/20" />
+            {/* Divider */}
+            <div className="mx-6">
+              <Separator className="bg-black/10 dark:bg-white/10" />
             </div>
 
-            <nav className="flex-1">
-              <ul className="space-y-0">
-                {NAV_MENUS.map((nav) => (
-                  <li key={nav.id} className="text-neutral-200">
+            {/* Nav links */}
+            <nav className="flex-1 px-3 py-4 overflow-y-auto">
+              <ul className="flex flex-col gap-1">
+                {NAV_MENUS.map((nav, index) => (
+                  <li key={nav.id}>
                     <Link
                       href={nav.link}
                       onClick={(e) => {
@@ -102,40 +130,71 @@ export default function Navbar() {
                         smoother?.scrollTo(nav.link, true, "top top");
                         setSheetOpen(false);
                       }}
-                      className="
-              group flex items-center justify-between
-              rounded-xl px-4 py-3
-              text-base font-medium
-              hover:bg-white/40 dark:hover:bg-white/10
-              active:scale-[0.98]
-              transition
-            "
+                      className={cn(
+                        "group relative flex items-center justify-between",
+                        "rounded-xl px-4 py-3.5",
+                        "text-sm font-semibold text-slate-700 dark:text-neutral-200",
+                        "hover:bg-white/50 dark:hover:bg-white/10",
+                        "active:scale-[0.98]",
+                        "transition-all duration-200",
+                      )}
+                      style={{ animationDelay: `${index * 40}ms` }}
                     >
-                      <span>{nav.name}</span>
+                      {/* Index number */}
+                      <span className="mr-3 text-[10px] font-bold tabular-nums text-teal-400/70 w-4 shrink-0">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
 
-                      {/* subtle arrow */}
+                      <span className="flex-1 text-white">{nav.name}</span>
+
+                      {/* Arrow */}
                       <span
-                        className="
-                opacity-0 translate-x-2
-                group-hover:opacity-100 group-hover:translate-x-0
-                transition text-primary
-              "
+                        className={cn(
+                          "text-primary text-base leading-none",
+                          "opacity-0 -translate-x-1",
+                          "group-hover:opacity-100 group-hover:translate-x-0",
+                          "transition-all duration-200",
+                        )}
                       >
                         →
                       </span>
+
+                      {/* Hover background pill */}
+                      <span className="absolute left-0 right-0 top-0 bottom-0 rounded-xl bg-teal-400/0 group-hover:bg-teal-400/5 transition-colors duration-200 -z-10" />
                     </Link>
                   </li>
                 ))}
               </ul>
             </nav>
+
+            {/* Footer */}
+            <div className="mx-6 mb-1">
+              <Separator className="bg-black/10 dark:bg-white/10" />
+            </div>
+            <div className="px-6 py-5 flex items-center justify-between">
+              <p className="text-xs text-slate-400 dark:text-neutral-500">
+                Tue – Sun &nbsp;·&nbsp; 9:00 AM – 7:00 PM
+              </p>
+              <a
+                href="tel:9813510103"
+                className={cn(
+                  "flex items-center gap-1.5 rounded-full",
+                  "bg-primary/10 hover:bg-primary/20",
+                  "px-3 py-1.5 transition-colors",
+                  "text-xs font-semibold text-primary",
+                )}
+              >
+                <PhoneCall size={11} strokeWidth={2.5} />
+                Call Us
+              </a>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
     );
   }
-
   return (
-    <div className="fixed top-0 left-0 w-full z-50 hidden xl:block">
+    <div className="fixed top-0 left-0 w-full z-50">
       <div
         id="nav"
         ref={navRef}

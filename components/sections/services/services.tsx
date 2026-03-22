@@ -118,7 +118,7 @@ export default function Services() {
           value={activeTab}
           onValueChange={setActiveTab}
           orientation="vertical"
-          className="mt-10 flex"
+          className="mt-10 flex px-4"
           id="services-tab"
         >
           <TabsList className="flex flex-col gap-1 bg-black/2 backdrop-blur-xl border border-neutral-200 dark:border-white/10 rounded-2xl p-2 shadow-sm w-full max-w-xs">

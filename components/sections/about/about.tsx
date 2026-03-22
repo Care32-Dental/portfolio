@@ -7,8 +7,14 @@ import AboutGallery from "./about-gallery";
 
 export default function About() {
   return (
-    <CommonSection title="why choose us" id="about" className="px-4" imageSource="/images/backgrounds/background-1.jpg">
-      <div className="grid lg:py-12 grid-cols-1 lg:grid-cols-2 place-items-center gap-16">
+    <CommonSection
+      title="about us"
+      id="about"
+      imageSource="/images/backgrounds/background-1.jpg"
+      subtitle="what we stand for"
+      description="Dedicated to delivering compassionate, affordable and high-quality care with modern techniques and a patient-first approach."
+    >
+      <div className="grid px-4 grid-cols-1 lg:grid-cols-2 place-items-center gap-16">
         <div className="w-full h-full">
           <AboutUs />
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";

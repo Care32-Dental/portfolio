@@ -1,14 +1,15 @@
 "use client";
 
 import About from "@/components/sections/about/about";
-import AlternateHero from "@/components/sections/alternate-hero";
 import ContactUsSection from "@/components/sections/contact/contact-us-section";
 import RequestCallback from "@/components/sections/contact/request-callback";
 import Footer from "@/components/sections/footer";
-import Hero from "@/components/sections/hero";
+// import AlternateHero from "@/components/sections/hero/alternate-hero";
+import Hero from "@/components/sections/hero/hero";
 import Navbar from "@/components/sections/navbar";
 import ServiceSection from "@/components/sections/services/service-section";
 import OurTeamSection from "@/components/sections/team/our-team-section";
+import Testimonials from "@/components/sections/testimonial/testimonials";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger, SplitText, ScrollSmoother } from "gsap/all";
@@ -28,15 +29,15 @@ export default function Home() {
       <Navbar />
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <Hero />
           {/* <AlternateHero /> */}
+          <Hero />
           <About />
           <ServiceSection />
           <OurTeamSection />
+          <Testimonials />
           <ContactUsSection />
           <RequestCallback />
           <Footer />
-          {/* <div className="h-dvh"></div> */}
         </div>
       </div>
     </div>

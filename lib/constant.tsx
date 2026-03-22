@@ -301,3 +301,36 @@ export const CONTACT_INFORMATION = {
     },
   ],
 };
+
+export const DOCTOR_TESTIMONIALS: {
+  id: number;
+  name: string;
+  speciality: string;
+  image: string;
+  quote: string;
+}[] = [
+  {
+    id: 1,
+    name: "Dr. Anamol Dumaru",
+    speciality: "Orthodontist",
+    image: "/images/team/anamol-dumaru.jpg",
+    quote:
+      "A confident smile can truly change how a person feels about themselves. My goal is to make orthodontic treatments comfortable, effective, and accessible for every patient.",
+  },
+  {
+    id: 2,
+    name: "Dr. Nabin Gosain",
+    speciality: "Oral & Dental Surgeon",
+    image: "/images/team/nabin-shrestha.jpg",
+    quote:
+      "We focus on precision and patient comfort in every procedure. Modern dental care allows us to perform even complex treatments with minimal discomfort and faster recovery.",
+  },
+  {
+    id: 3,
+    name: "Dr. Sabin Gwachha",
+    speciality: "General & Cosmetic Dentist",
+    image: "/images/team/sabin-gwachha.jpg",
+    quote:
+      "Preventive care is the foundation of long-term oral health. We aim to educate our patients so they can maintain healthy smiles even outside the clinic.",
+  },
+];

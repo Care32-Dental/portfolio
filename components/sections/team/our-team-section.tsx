@@ -33,10 +33,16 @@ export default function OurTeamSection() {
     { scope: containerRef },
   );
   return (
-    <CommonSection id="team" title="get to know us" imageSource="/images/backgrounds/background-3.jpg">
+    <CommonSection
+      id="team"
+      title="our team"
+      subtitle="Meet our expert doctors"
+      description="Skilled professionals committed to providing trusted care with experience, precision, and empathy."
+      imageSource="/images/backgrounds/background-3.jpg"
+    >
       <div
         ref={containerRef}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0 py-10"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-6"
       >
         {OUR_TEAM.map((member) => (
           <TeamCard key={member.id} member={member} />

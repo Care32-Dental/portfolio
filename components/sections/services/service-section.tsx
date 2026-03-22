@@ -6,10 +6,12 @@ import Services from "./services";
 export default function ServiceSection() {
   return (
     <CommonSection
-      title="what we offer"      
+      title="our services"
+      subtitle="treatments tailored to your needs"
+      description="From routine checkups to advanced procedures, we offer comprehensive solutions for every smile."
       id="services"
       // className="relative"
-      // imageSource="/images/backgrounds/background-3.jpg"      
+      // imageSource="/images/backgrounds/background-3.jpg"
     >
       <Services />
     </CommonSection>
